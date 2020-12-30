@@ -1,0 +1,105 @@
+#:kivy 2.0
+
+ManageScreen:
+    StartWindow:
+    PlayingWindow:
+
+
+
+<StartWindow>:
+    name: "start"
+    GridLayout:
+        cols:1
+        size: root.width,root.height
+        Image:
+            source:'images/rps.png'
+            allow_stretch: False
+            keep_ratio: False
+            
+        MDLabel:
+            text: "Let's Rock Paper Scissor"
+            halign:"center"
+            theme_text_color:"Custom"
+            text_color:0,0,0,1
+            font_size:30
+        FloatLayout:
+            MDRectangleFlatButton:
+                text:"Play"
+                size_hint_x:0.2
+                size_hint_y: 0.3
+                pos_hint:{'x':0.40,'y':0.9}
+                on_release:
+                    app.root.current="playing"
+                    root.manager.transition.direction="left"
+
+            MDRectangleFlatButton:
+                text:"Exit"
+                md_bg_color: 0,0,0,1
+                size_hint_x:0.2
+                size_hint_y: 0.3
+                pos_hint:{'x':0.40,'y':0.55}
+                on_press:
+                    app.stop()
+
+<PlayingWindow>:
+    name: "playing"
+    FloatLayout:
+        size: root.width,root.height
+        MDIconButton:
+            id: com_choose
+            icon:'images/rps.png'
+            size_hint_x:.5
+            size_hint_y:0.35
+            pos_hint:{'center_x':0.5,'y':0.65}    
+
+        MDIconButton:
+            id:rock
+            icon:'images/rock.png'
+            size_hint_x:0.12
+            size_hint_y:0.12
+            pos_hint:{'x':0.31,'y':0.35}
+            on_press:
+                app.show_pop('rock')
+                
+        MDIconButton:
+            id: paper
+            icon:'images/paper.png'
+            size_hint_x:0.12
+            size_hint_y:0.12
+            pos_hint:{'x':0.46,'y':0.35}
+            on_press:
+                app.show_pop('paper')
+                
+                
+
+                
+        MDIconButton:
+            id: scissor
+            icon:'images/scissor.png'
+            size_hint_x:0.12
+            size_hint_y:0.12
+            pos_hint:{'x':0.61,'y':0.35}
+            on_press:
+                app.show_pop('scissor')
+                
+        MDLabel:
+            text:"Choose Yours!"
+            halign:"center"
+            theme_text_color:"Custom"
+            text_color:0,0,0,1
+            font_size: 30
+            pos_hint:{'y':0.03}
+        
+        MDRectangleFlatButton:
+            id:back
+            text:"Back"
+            size_hint_x:0.17
+            size_hint_y:0.12
+            pos_hint:{'x':0.45,'y':0.1}
+            md_bg_color: 0,0,0,1
+            on_press:
+                app.root.current="start"
+                root.manager.transition.direction="right"
+
+
+
