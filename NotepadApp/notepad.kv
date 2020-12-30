@@ -1,0 +1,155 @@
+#:kivy 2.00
+   
+Manage_Window:
+    Enter:
+    Set_Password:
+    Notes:
+    New_Note:
+
+    
+
+<Set_Password>:
+    name: 'Sign Up'
+
+    MDTextField:
+        hint_text: "Set Password"
+        mode: 'rectangle'
+        pos_hint: {'center_x':0.5,'center_y':0.7}
+        size_hint_x: 0.67
+        color_mode: 'custom'
+        line_color_focus: 1, 0.67, 0, 1
+
+    MDFloatingActionButton:
+        icon: 'arrow-down'
+        mg_bg_color:  0.68,0.9,0,1
+        pos_hint: {'center_x':0.5 ,'center_y':0.4}
+        on_release:
+            app.root.current="Enter"
+            root.manager.transition.direction="up"
+
+<Enter>:
+    name:'Enter'
+    FloatLayout:
+
+        MDTextField:
+            hint_text: 'Enter Password'
+            mode: 'rectangle'
+            pos_hint: {'center_x':0.5,'center_y':0.68}
+            size_hint_x: 0.67
+            color_mode: 'custom'
+            line_color_focus: 1, 0.7, 0, 1
+
+        MDFloatingActionButton:
+            icon: 'arrow-right'
+            mg_bg_color:  0.68,0.9,0,1
+            pos_hint: {'center_x':0.5 ,'center_y':0.45}
+            on_release:
+                app.root.current="Notes"
+                root.manager.transition.direction="up"
+            
+
+        MDFlatButton:
+            text: "New user?"
+            pos_hint: {'center_x':0.35 ,'center_y':0.36}
+            on_release:
+                app.root.current='Sign Up'
+                root.manager.transition.direction="down"
+        MDFlatButton:
+            text: "Forget Password ?"
+            pos_hint: {'center_x':0.6 ,'center_y':0.36}
+            
+
+        MDIconButton:
+            icon: 'close'
+            mg_bg_color:  0.68,0.9,0,1
+            pos_hint: {'center_x':0.5 ,'center_y':0.15}
+            on_press:
+                app.stop()
+    
+
+<Notes>:
+    name: 'Notes'
+    id:notes
+    MDFloatingActionButton:
+        icon:"plus"
+        mg_bg_color: 0.68,0.9,0,1
+        pos_hint:{'center_x':0.91,'center_y':0.055}
+        on_release:
+            app.root.current="New_Note"
+            root.manager.transition.direction="left"
+            
+
+    MDTextField:
+        hint_text: "Search your notes here!"
+        color_mode: 'custom'
+        line_color_focus: 1, 0.7, 0, 1
+        pos_hint: {'center_x':0.47,'center_y':0.95}
+        size_hint_x: 0.8
+
+    MDIconButton:
+        id: Dots
+        icon:"dots-vertical"
+        pos_hint:{'center_x':0.96,'center_y':0.95}
+        on_release: root.dropdown.open()
+
+    MDFloatingActionButton:
+        icon:"arrow-left"
+        mg_bg_color: 0.68,0.9,0,1
+        pos_hint:{'center_x':0.09,'center_y':0.055}
+        on_press:
+            app.root.current='Enter'
+            root.manager.transition.direction="down"
+
+            
+
+<New_Note>:
+    name:'New_Note'
+    MDTextField:
+        text:'untitled'
+        text_align:'center'
+        pos_hint:{'center_x':0.32,'center_y':0.97}
+        size_hint_x:0.4
+        color_mode: 'custom'
+        line_color_focus: 1,0.7,0,1
+
+    MDIconButton:
+        id: Note_Dots
+        icon:"dots-vertical"
+        pos_hint:{'center_x':0.94,'center_y':0.97}
+        on_release: root.dropdown.open()
+        
+
+
+    MDIconButton:
+        icon:"camera-image"
+        pos_hint:{'center_x':0.83,'center_y':0.97}
+
+    MDIconButton:
+        icon:"microphone"
+        pos_hint:{'center_x':0.71,'center_y':0.97}
+
+    MDIconButton:
+        icon:"bookmark"
+        pos_hint:{'center_x':0.6,'center_y':0.97}
+
+    MDIconButton:
+        icon:"arrow-left"
+        pos_hint:{'center_x':0.05,'center_y':0.97}
+        on_release:
+            app.root.current="Notes"
+            root.manager.transition.direction="right"
+
+    MDTextField:
+        id: text_input
+        text: 'Write Something!'
+        multiline: True
+        pos_hint: {'center_x': 0.5, 'center_y': 0.46} 
+        size_hint: .91, 0.97
+        color_mode: 'custom'
+        line_color_focus: 1,0.7,0,1
+        font_size: 17
+        
+
+
+
+
